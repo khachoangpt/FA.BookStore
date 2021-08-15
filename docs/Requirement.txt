@@ -1,0 +1,31 @@
+Model:
+    Category
+    Author
+    Publisher
+    Book
+    Review
+Architecture - Design Pattern:
+    MVC
+    3-Layer
+    N-tier
+    Repository
+    Unit Of Work
+MVC Requirements:
+    Management:
+        Category
+        Author
+        Publisher
+        Book
+    Common View:
+        Details
+        Create Review
+        Lastest Book
+        Popular Book
+        Highest Book
+        By Category
+        By Price
+        By Author
+        By Publisher
+    Advanced Views:
+        Order
+        Checkout
