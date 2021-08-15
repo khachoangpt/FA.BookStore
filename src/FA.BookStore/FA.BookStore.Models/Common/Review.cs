@@ -9,7 +9,7 @@ namespace FA.BookStore.Models.Common
     public class Review : BaseEntity
     {
         [ForeignKey("Book")]
-        public int BookId { get; set; }
+        public Guid BookId { get; set; }
 
         public Book Book { get; set; }
 
