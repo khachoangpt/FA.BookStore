@@ -1,0 +1,7 @@
+﻿<h4>Category</h4>
+<div class="list-group" id="list-tab" role="tablist">
+    @foreach (var item in Model)
+    {
+        <a class="list-group-item list-group-item-action" id="list-home-list" href="@Url.Action("GetBookByCategory", "Book", new { category = item.Name})">@item.Name</a>
+    }
+</div>

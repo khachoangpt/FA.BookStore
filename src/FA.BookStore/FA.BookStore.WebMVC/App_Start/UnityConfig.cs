@@ -1,6 +1,14 @@
+using FA.BookStore.Data;
+using FA.BookStore.Data.Infrastructure;
+using FA.BookStore.Data.Infrastructure.Repositories;
+using FA.BookStore.Models.Common;
+using FA.BookStore.Services;
+using FA.BookStore.WebMVC.Areas.Identity.Controllers;
+using FA.BookStore.WebMVC.Controllers;
 using System;
 
 using Unity;
+using Unity.Injection;
 
 namespace FA.BookStore.WebMVC
 {
@@ -42,6 +50,22 @@ namespace FA.BookStore.WebMVC
 
             // TODO: Register your type's mappings here.
             // container.RegisterType<IProductRepository, ProductRepository>();
+            container.RegisterSingleton<BookStoreContext, BookStoreContext>();
+            container.RegisterType<IUnitOfWork, UnitOfWork>();
+            container.RegisterType<AccountController>(new InjectionConstructor());
+            container.RegisterType<RolesAdminController>(new InjectionConstructor());
+            container.RegisterType<ManageController>(new InjectionConstructor());
+            container.RegisterType<UsersAdminController>(new InjectionConstructor());
+            container.RegisterType<IGenericRepository<Category>, GenericRepository<Category>>();
+            container.RegisterType<IGenericRepository<Book>, GenericRepository<Book>>();
+            container.RegisterType<IGenericRepository<Author>, GenericRepository<Author>>();
+            container.RegisterType<IGenericRepository<Review>, GenericRepository<Review>>();
+            container.RegisterType<IGenericRepository<Publisher>, GenericRepository<Publisher>>();
+            container.RegisterType<ICategoryServices, CategoryServices>();
+            container.RegisterType<IBookServices, BookServices>();
+            container.RegisterType<IAuthorServices, AuthorServices>();
+            container.RegisterType<IReviewServices, ReviewServices>();
+            container.RegisterType<IPublisherServices, PublisherServices>();
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace FA.BookStore.Services
 {
-    class ReviewServices : BaseServices<Review>, IReviewServices
+    public class ReviewServices : BaseServices<Review>, IReviewServices
     {
         public ReviewServices(IUnitOfWork unitOfWork) : base(unitOfWork)
         {

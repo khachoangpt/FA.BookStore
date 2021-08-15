@@ -3,16 +3,18 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Book Store</title>
+    <link rel="icon" href="~/Assets/images/bootstrap-solid.svg" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="@Url.Action("Index", "Home", new { area = "" })">
             <img src="~/Assets/images/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-            Bootstrap
+            Book Store
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -47,11 +49,16 @@
             @Html.Partial("_LoginPartial")
         </div>
     </nav>
+    <div class="container-fluid mb-5">
+        @Html.Partial("_HeaderPartial")
+    </div>
 
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-3">
-                <h1>Left Menu</h1>
+                @Html.Partial("_SearchPartial")
+                @{ Html.RenderAction("CategoryLeftMenu", "Category"); }
+                <hr />
             </div>
             <div class="col-md-9">
                 @RenderBody()

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FA.BookStore.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +9,17 @@ namespace FA.BookStore.WebMVC.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IBookServices _bookServices;
+
+        public HomeController(IBookServices bookServices)
+        {
+            _bookServices = bookServices;
+        }
+
         public ActionResult Index()
         {
-            return View();
+            var books = _bookServices.GetLatestBook(8);
+            return View(books);
         }
 
         public ActionResult About()
