@@ -1,4 +1,7 @@
 ﻿using FA.BookStore.Models.Common;
+using FA.BookStore.Models.Securiry;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -10,6 +13,8 @@ namespace FA.BookStore.Data
     {
         protected override void Seed(BookStoreContext context)
         {
+            InitializeIdentity(context);
+
             var categories = new List<Category>()
             {
                 new Category()
@@ -159,6 +164,38 @@ namespace FA.BookStore.Data
             context.Books.AddRange(books);
             context.Reviews.AddRange(Reviews);
             context.SaveChanges();
+        }
+
+        public static void InitializeIdentity(BookStoreContext db)
+        {
+            var userManager = new UserManager<User>(new UserStore<User>(db));
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
+            const string name = "admin@example.com";
+            const string password = "Admin@123456";
+            const string roleName = "Admin";
+
+            //Create Role Admin if it does not exist
+            var role = roleManager.FindByName(roleName);
+            if (role == null)
+            {
+                role = new IdentityRole(roleName);
+                var roleResult = roleManager.Create(role);
+            }
+
+            var user = userManager.FindByName(name);
+            if (user == null)
+            {
+                user = new User { UserName = name, Email = name };
+                var result = userManager.Create(user, password);
+                result = userManager.SetLockoutEnabled(user.Id, false);
+            }
+
+            // Add user admin to Role Admin if not already added
+            var rolesForUser = userManager.GetRoles(user.Id);
+            if (!rolesForUser.Contains(role.Name))
+            {
+                var result = userManager.AddToRole(user.Id, role.Name);
+            }
         }
     }
 }

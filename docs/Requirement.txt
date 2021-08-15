@@ -29,3 +29,7 @@ MVC Requirements:
     Advanced Views:
         Order
         Checkout
+
+Enable-Migrations -ProjectName "FA.BookStore.Core"
+Add-Migration -Name "MigrationName" -StartUpProjectName "FA.BookStore.DemoConsole" -ProjectName "FA.BookStore.Core" -ConfigurationTypeName "Configuration"
+Update-Database -StartUpProjectName "FA.BookStore.DemoConsole" -ProjectName "FA.BookStore.Core" -ConfigurationTypeName "Configuration"

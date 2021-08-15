@@ -1,12 +1,14 @@
 ﻿using FA.BookStore.Models.BaseEntities;
 using FA.BookStore.Models.Common;
+using FA.BookStore.Models.Securiry;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Data.Entity;
 using System.Threading.Tasks;
 
 namespace FA.BookStore.Data
 {
-    public class BookStoreContext : DbContext
+    public class BookStoreContext : IdentityDbContext<User>
     {
         public BookStoreContext() : base("BookStoreConn")
         {
@@ -14,7 +16,14 @@ namespace FA.BookStore.Data
 
         static BookStoreContext()
         {
+            // Set the database initializer which is run once during application start
+            // This seeds the database with admin user credentials and admin role
             Database.SetInitializer(new BookStoreInitializer());
+        }
+
+        public static BookStoreContext Create()
+        {
+            return new BookStoreContext();
         }
 
         public DbSet<Category> Categories { get; set; }
