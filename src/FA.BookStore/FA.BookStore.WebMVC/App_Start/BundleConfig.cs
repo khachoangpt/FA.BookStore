@@ -22,7 +22,7 @@ namespace FA.BookStore.WebMVC
                       "~/Assets/js/bootstrap.min.js",
                       "~/Assets/js/respond.min.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
+            bundles.Add(new StyleBundle("~/Assets/css").Include(
                       "~/Assets/css/bootstrap.min.css",
                       "~/Assets/css/site.css"));
         }

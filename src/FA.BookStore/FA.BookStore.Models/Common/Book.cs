@@ -38,18 +38,18 @@ namespace FA.BookStore.Models.Common
         public bool Published { get; set; }
 
         [ForeignKey("Category")]
-        public Guid CategoryId { get; set; }
+        public virtual Guid CategoryId { get; set; }
 
-        public Category Category { get; set; }
+        public virtual Category Category { get; set; }
 
         [ForeignKey("Publisher")]
-        public Guid PublisherId { get; set; }
+        public virtual Guid PublisherId { get; set; }
 
-        public Publisher Publisher { get; set; }
+        public virtual Publisher Publisher { get; set; }
 
-        public IList<Author> Authors { get; set; }
+        public virtual ICollection<Author> Authors { get; set; }
 
-        public IList<Review> Reviews { get; set; }
+        public virtual ICollection<Review> Reviews { get; set; }
 
     }
 }

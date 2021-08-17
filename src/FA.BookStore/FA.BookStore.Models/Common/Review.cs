@@ -9,9 +9,9 @@ namespace FA.BookStore.Models.Common
     public class Review : BaseEntity
     {
         [ForeignKey("Book")]
-        public Guid BookId { get; set; }
+        public virtual Guid BookId { get; set; }
 
-        public Book Book { get; set; }
+        public virtual Book Book { get; set; }
 
         [Required(ErrorMessage = "{0} is required")]
         public string Content { get; set; }

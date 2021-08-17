@@ -1,0 +1,61 @@
+﻿@model FA.BookStore.Common.Paginated<Book>
+@{
+    ViewBag.Title = "Search";
+}
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-3 col-sm-6 mb-5">
+            <a href="@Url.Action("Details", "Book", new { id = item.Id})">
+                <div>
+                    <img src="~/Assets/images/@item.ImgUrl" alt="" class="w-100" height="350">
+                </div>
+            </a>
+            <div>
+                <h5><a class="text-success" href="@Url.Action("Details", "Book", new { id = item.Id})">@item.Title</a></h5>
+                <p>
+                    <em class="item_price active">@item.UnitPrice VNĐ</em>
+                    <br>
+                    <a href="#" data-text="Thêm vào giỏ">Thêm vào giỏ</a>
+                </p>
+            </div>
+        </div>
+    }
+</div>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center font-weight-bold">
+        @{
+            var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+            var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+            ViewBag.PageRange = 3;
+        }
+        <li class="page-item">
+            <a href="@Url.Action("Search", "Book", new { pageIndex=1, currentFilter=ViewData["CurrentFilter"] })"
+               class="btn page-link @prevDisabled"><<</a>
+        </li>
+        <li class="page-item">
+            <a href="@Url.Action("Search", "Book", new { pageIndex=(Model.PageIndex - 1 <= 0 ? 1 : Model.PageIndex - 1), currentFilter=ViewData["CurrentFilter"] })"
+               class="btn page-link @prevDisabled"><</a>
+        </li>
+        @for (int i = 1; i <= Model.TotalPages; i++)
+        {
+            if (i >= Model.PageIndex - ViewBag.PageRange && i <= Model.PageIndex + ViewBag.PageRange)
+            {
+                <li class="page-item @(i==Model.PageIndex ? "active" : "")">
+                    <a class="@(i==Model.PageIndex ? "Current" : "") page-link"
+                       href="@Url.Action("Search", "Book", new { pageIndex=i, currentFilter=ViewData["CurrentFilter"] })">@i</a>
+                </li>
+            }
+        }
+        <li class="page-item">
+            <a href="@Url.Action("Search", "Book", new { pageIndex=(Model.PageIndex + 1 > Model.TotalPages ? Model.TotalPages : Model.PageIndex + 1), currentFilter=ViewData["CurrentFilter"] })"
+               class="btn page-link @nextDisabled">></a>
+        </li>
+        <li class="page-item">
+            <a href="@Url.Action("Index", "Book", new { pageIndex=(Model.TotalPages), currentFilter=ViewData["CurrentFilter"] })"
+               class="btn page-link @nextDisabled">>></a>
+        </li>
+    </ul>
+</nav>

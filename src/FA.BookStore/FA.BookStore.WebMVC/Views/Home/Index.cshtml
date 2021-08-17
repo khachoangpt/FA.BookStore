@@ -13,10 +13,10 @@
                     <img src="~/Assets/images/@item.ImgUrl" alt="" class="w-100" height="350">
                 </div>
             </a>
-            <div class="women">
-                <h6><a href="@Url.Action("Details", "Book", new { id = item.Id})">@item.Title</a></h6>
+            <div>
+                <h5><a class="text-success" href="@Url.Action("Details", "Book", new { id = item.Id})">@item.Title</a></h5>
                 <p>
-                    <em class="item_price">@item.UnitPrice VNĐ</em>
+                    <em class="item_price active">@item.UnitPrice VNĐ</em>
                     <br>
                     <a href="#" data-text="Thêm vào giỏ">Thêm vào giỏ</a>
                 </p>

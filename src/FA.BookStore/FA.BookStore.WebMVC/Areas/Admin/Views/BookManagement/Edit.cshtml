@@ -1,0 +1,103 @@
+﻿@model BookViewModel
+
+@{
+    ViewBag.Title = "Edit Book";
+}
+
+<h2 class="text-center mt-4 mb-5">Edit Book</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label font-weight-bold" })
+                <div>
+                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.ImgUrl, htmlAttributes: new { @class = "control-label font-weight-bold" })
+                <div>
+                    @Html.EditorFor(model => model.ImgUrl, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ImgUrl, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.UnitPrice, htmlAttributes: new { @class = "control-label font-weight-bold" })
+                <div>
+                    @Html.EditorFor(model => model.UnitPrice, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.UnitPrice, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label font-weight-bold" })
+                <div>
+                    @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.CategoryId, htmlAttributes: new { @class = "control-label font-weight-bold" })
+                <div>
+                    @Html.DropDownListFor(model => model.CategoryId, new SelectList(ViewBag.Categories, "Value", "Text"), htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.PublisherId, htmlAttributes: new { @class = "control-label font-weight-bold" })
+                <div>
+                    @Html.DropDownListFor(model => model.PublisherId, new SelectList(ViewBag.Publishers, "Value", "Text"), htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.PublisherId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Published, htmlAttributes: new { @class = "control-label font-weight-bold" })
+                <div>
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Published)
+                        @Html.ValidationMessageFor(model => model.Published, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label class="control-label font-weight-bold" for="Author">Authors</label>
+                <div class="">
+                    @Html.ListBoxFor(model => model.SelectedAuthorIds, Model.Authors, new { @class = "select-tag-multiple w-100" })
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                @Html.LabelFor(model => model.Summary, htmlAttributes: new { @class = "control-label font-weight-bold" })
+                <div>
+                    @Html.TextAreaFor(model => model.Summary, htmlAttributes: new { @id = "editor", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Summary, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+        <div class="form-group">
+            @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-secondary mr-3" })
+            <button type="submit" class="btn btn-info">
+                Edit
+            </button>
+        </div>
+    </div>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

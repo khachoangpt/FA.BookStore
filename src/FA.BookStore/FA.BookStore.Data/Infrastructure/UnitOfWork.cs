@@ -1,4 +1,5 @@
-﻿using FA.BookStore.Data.Infrastructure.Repositories;
+﻿using FA.BookStore.Data;
+using FA.BookStore.Data.Infrastructure.Repositories;
 using FA.BookStore.Models.BaseEntities;
 using FA.BookStore.Models.Common;
 using System.Threading.Tasks;
@@ -24,6 +25,10 @@ namespace FA.BookStore.Data.Infrastructure
 
         public IGenericRepository<Book> BookRepository => _bookRepository ?? new GenericRepository<Book>(_dbContext);
 
+        private IGenericRepository<Publisher> _publisherRepository;
+
+        public IGenericRepository<Publisher> PublisherRepository => _publisherRepository ?? new GenericRepository<Publisher>(_dbContext);
+
         private IGenericRepository<Author> _authorRepository;
 
         public IGenericRepository<Author> AuthorRepository => _authorRepository ?? new GenericRepository<Author>(_dbContext);
@@ -31,10 +36,6 @@ namespace FA.BookStore.Data.Infrastructure
         private IGenericRepository<Review> _reviewRepository;
 
         public IGenericRepository<Review> ReviewRepository => _reviewRepository ?? new GenericRepository<Review>(_dbContext);
-
-        private IGenericRepository<Publisher> _publisherRepository;
-
-        public IGenericRepository<Publisher> PublisherRepository => _publisherRepository ?? new GenericRepository<Publisher>(_dbContext);
 
         public void Dispose()
         {

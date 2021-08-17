@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Book Store</title>
     <link rel="icon" href="~/Assets/images/bootstrap-solid.svg" />
-    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Assets/css")
     @Scripts.Render("~/bundles/modernizr")
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -41,7 +41,11 @@
                             <a class="dropdown-item" href="@Url.Action("Index", "UsersAdmin", new { area = "Identity" })">Users Admin</a>
                             <a class="dropdown-item" href="@Url.Action("Index", "RolesAdmin", new { area = "Identity" })">Roles Admin</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Manager</a>
+                            <a class="dropdown-item" href="@Url.Action("Index", "BookManagement", new { area = "Admin"})">Book Management</a>
+                            <a class="dropdown-item" href="@Url.Action("Index", "CategoryManagement", new { area = "Admin"})">Category Management</a>
+                            <a class="dropdown-item" href="@Url.Action("Index", "AuthorManagement", new { area = "Admin"})">Author Management</a>
+                            <a class="dropdown-item" href="@Url.Action("Index", "ReviewManagement", new { area = "Admin"})">Review Management</a>
+                            <a class="dropdown-item" href="@Url.Action("Index", "PublisherManagement", new { area = "Admin"})">Publisher Management</a>
                         </div>
                     </li>
                 }

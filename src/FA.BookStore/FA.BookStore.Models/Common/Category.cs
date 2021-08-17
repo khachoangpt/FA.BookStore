@@ -15,6 +15,6 @@ namespace FA.BookStore.Models.Common
         [Required(ErrorMessage = "{0} is required")]
         public string Description { get; set; }
 
-        public IList<Book> Books { get; set; }
+        public virtual ICollection<Book> Books { get; set; }
     }
 }

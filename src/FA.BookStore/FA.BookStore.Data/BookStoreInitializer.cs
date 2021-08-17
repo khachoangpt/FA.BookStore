@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace FA.BookStore.Data
 {
-    class BookStoreInitializer : DropCreateDatabaseIfModelChanges<BookStoreContext>
+    public class BookStoreInitializer : DropCreateDatabaseIfModelChanges<BookStoreContext>
     {
         protected override void Seed(BookStoreContext context)
         {
@@ -20,14 +20,14 @@ namespace FA.BookStore.Data
                 new Category()
                 {
                     Id = Guid.NewGuid(),
-                    Name = "Sách Trong Nước",
-                    Description = "Sách Trong Nước"
+                    Name = "Văn Học",
+                    Description = "Văn Học"
                 },
                 new Category()
                 {
                     Id = Guid.NewGuid(),
-                    Name = "Sách Nước Ngoài",
-                    Description = "Sách Nước Ngoài"
+                    Name = "Lịch Sử",
+                    Description = "Lịch Sử"
                 },
                 new Category()
                 {
@@ -142,8 +142,8 @@ namespace FA.BookStore.Data
                     CreatedDate = new DateTime(2020,10,20),
                     UpdatedDate = new DateTime(2021,01,12),
                     Published = true,
-                    Category = categories.Single(x => x.Name == categories[2].Name),
-                    Publisher = publishers.Single(x => x.Name == publishers[2].Name),
+                    Category = categories.Single(x => x.Name == categories[0].Name),
+                    Publisher = publishers.Single(x => x.Name == publishers[0].Name),
                     Authors = new List<Author>{ author1, author2, author3 }
                 },                
                 new Book()
@@ -157,8 +157,8 @@ namespace FA.BookStore.Data
                     CreatedDate = new DateTime(2020,10,20),
                     UpdatedDate = new DateTime(2021,01,12),
                     Published = true,
-                    Category = categories.Single(x => x.Name == categories[2].Name),
-                    Publisher = publishers.Single(x => x.Name == publishers[2].Name),
+                    Category = categories.Single(x => x.Name == categories[1].Name),
+                    Publisher = publishers.Single(x => x.Name == publishers[1].Name),
                     Authors = new List<Author>{ author1, author2, author3 }
                 },
                 new Book()
@@ -187,8 +187,8 @@ namespace FA.BookStore.Data
                     CreatedDate = new DateTime(2020,10,20),
                     UpdatedDate = new DateTime(2021,01,12),
                     Published = true,
-                    Category = categories.Single(x => x.Name == categories[2].Name),
-                    Publisher = publishers.Single(x => x.Name == publishers[2].Name),
+                    Category = categories.Single(x => x.Name == categories[0].Name),
+                    Publisher = publishers.Single(x => x.Name == publishers[0].Name),
                     Authors = new List<Author>{ author1, author2, author3 }
                 },
                 new Book()
@@ -202,8 +202,8 @@ namespace FA.BookStore.Data
                     CreatedDate = new DateTime(2020,10,20),
                     UpdatedDate = new DateTime(2021,01,12),
                     Published = true,
-                    Category = categories.Single(x => x.Name == categories[2].Name),
-                    Publisher = publishers.Single(x => x.Name == publishers[2].Name),
+                    Category = categories.Single(x => x.Name == categories[1].Name),
+                    Publisher = publishers.Single(x => x.Name == publishers[1].Name),
                     Authors = new List<Author>{ author1, author2, author3 }
                 },
                 new Book()
@@ -232,8 +232,8 @@ namespace FA.BookStore.Data
                     CreatedDate = new DateTime(2020,10,20),
                     UpdatedDate = new DateTime(2021,01,12),
                     Published = true,
-                    Category = categories.Single(x => x.Name == categories[2].Name),
-                    Publisher = publishers.Single(x => x.Name == publishers[2].Name),
+                    Category = categories.Single(x => x.Name == categories[0].Name),
+                    Publisher = publishers.Single(x => x.Name == publishers[0].Name),
                     Authors = new List<Author>{ author1, author2, author3 }
                 },
             };
