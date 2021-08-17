@@ -61,6 +61,7 @@
         <div class="row">
             <div class="col-md-3">
                 @Html.Partial("_SearchPartial")
+
                 @{ Html.RenderAction("CategoryLeftMenu", "Category"); }
                 <hr />
             </div>
@@ -70,8 +71,8 @@
         </div>
     </div>
 
-    <footer>
-        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+    <footer class="text-center bg-secondary" style="height: 50px;">
+        <p style="line-height: 50px;">&copy; @DateTime.Now.Year - Book Store</p>
     </footer>
 
     @Scripts.Render("~/bundles/jquery")
