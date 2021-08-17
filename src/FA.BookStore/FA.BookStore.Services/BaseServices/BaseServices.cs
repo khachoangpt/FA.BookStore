@@ -84,7 +84,7 @@ namespace FA.BookStore.Services.BaseServices
             {
                 throw new ArgumentNullException();
             }
-            _unitOfWork.GenericRepository<TEntity>().Delete(entity);
+            _unitOfWork.GenericRepository<TEntity>().Delete(entity, isHardDelete:true);
             return await _unitOfWork.SaveChangesAsync() > 0;
         }
 

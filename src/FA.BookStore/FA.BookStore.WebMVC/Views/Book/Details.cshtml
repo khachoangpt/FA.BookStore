@@ -40,3 +40,79 @@
     </div>
 </div>
 
+<div class="comment-form mb-5">
+    <h4>Review</h4>
+    <form>
+        @Html.HiddenFor(x => x.Id, new { id = "book-id" })
+        <div class="form-group col-12">
+            <textarea class="form-control mb-10 border border-primary" rows="3" id="reviewText" name="reviewText" placeholder="Enter review" onfocus="this.placeholder = ''"></textarea>
+        </div>
+        <div class="col-12">
+            <button type="button" id="submit-review" class="btn btn-success">Review</button>
+        </div>
+    </form>
+</div>
+
+<div class="comments-area">
+    <h4 id="count-comment">@Model.Reviews.Count @(Model.Reviews.Count <= 1 ? "Review" : "Reviews")</h4>
+    <div class="comment-list">
+        @foreach (var item in Model.Reviews.OrderByDescending(c => c.CreatedDate).ToList())
+        {
+            <div class="single-comment justify-content-between d-flex mb-5 border border-success">
+                <div class="user justify-content-between">
+                    <div>
+                        <i class="date">@item.CreatedDate.ToString("dddd, dd MMMM yyyy")</i>
+                        <h6 class="comment">@item.Content</h6>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section scripts{
+
+    <script>
+        $(document).ready(function () {
+            $("#submit-review").click(() => {
+                let bookId = $("#book-id").val();
+                let content = $('#reviewText').val().trim();
+
+                if (content.length == 0) {
+                    alert("Please input all fills.");
+                    return;
+                }
+
+                $.ajax({
+                    url: '/Review/AddReview',
+                    type: 'post',
+                    data: {
+                        bookId: bookId,
+                        content: content
+                    },
+                    success: data => {
+                        let commentCount = parseInt($("#count-comment").text()) + 1;
+                        if (commentCount <= 1) {
+                            $("#count-comment").text(commentCount + " Review");
+                        } else {
+                            $("#count-comment").text(commentCount + " Reviews");
+                        }
+                        var timeFormat = new Date(parseInt(data.CreatedDate.substr(6)));
+                        timeFormat = timeFormat.format("dddd, dd mmmm yyyy");
+
+                        $(".comment-list").prepend(`
+                                <div class="single-comment justify-content-between d-flex mb-5 border border-success">
+                                    <div class="user justify-content-between">
+                                        <div>
+                                            <p class="date">${timeFormat}</p>
+                                            <h6 class="comment">${data.Content}</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                `);
+                    }
+                });
+            })
+        });
+    </script>
+}
